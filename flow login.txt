@@ -1,0 +1,10 @@
+flow login
+
+1. user input textboxt email dan password
+2. Ketika klik button login :
+	1. akan mengirimkan request ke api 
+	2. api akan mengembalikan response berupa cookies yang akan tersimpan di storage cookies client
+	3. client akan mengambil token cookies dari storage cookies
+	4. token cookies akan didecode supaya mendapatkan payloadnya
+	5. memanggil reducer zustand onauthsuccess dengan payloadnya dari hasil decoded token
+	6. reducer onauthsuccess akan mengisi state user didalam store auth
