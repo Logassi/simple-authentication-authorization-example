@@ -14,12 +14,13 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  name     String @db.VarChar(50)
-  email    String @unique
-  password String
-  roleId   Int
-  role     Role   @relation(fields: [roleId], references: [id])
+  id         Int     @id @default(autoincrement())
+  name       String  @db.VarChar(50)
+  email      String  @unique
+  password   String
+  isVerified Boolean @default(false)
+  roleId     Int
+  role       Role    @relation(fields: [roleId], references: [id])
 }
 
 model Role {

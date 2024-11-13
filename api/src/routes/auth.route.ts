@@ -4,6 +4,7 @@ import {
   Register,
   GetUserLogin,
   GetUsers,
+  VerifyUser,
 } from "../controllers/auth.controller";
 import { VerifyToken, AdminGuard } from "../middlewares/auth.middleware";
 import { RegisterValidation } from "../middlewares/validations/auth.validation";
@@ -19,6 +20,9 @@ router.get("/me", VerifyToken, GetUserLogin);
 
 router.get("/users", VerifyToken, AdminGuard, GetUsers);
 
+//to verify when user click button verify
+router.get("/verify", VerifyToken, VerifyUser);
+
 //uploader
 router.post(
   "/upload",
@@ -28,7 +32,11 @@ router.post(
       const { file } = req;
       const { name } = req.body;
 
+      console.log(file);
+
       if (!file) throw new Error("no file uploaded");
+
+      console.log(name);
 
       res.status(200).send("file uploaded");
     } catch (error) {
