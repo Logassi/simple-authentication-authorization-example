@@ -37,4 +37,23 @@ export const RegisterValidation = [
   },
 ];
 
-export const LoginValidation = [body("email")];
+export const LoginValidation = [
+  body("email")
+    .notEmpty()
+    .withMessage("Email is Required")
+    .isEmail()
+    .withMessage("Invalid Email Format"),
+  body("password").notEmpty().withMessage("Password is required"),
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const errors = validationResult(req);
+      console.log(errors);
+
+      if (!errors.isEmpty()) throw new Error(errors.array()[0].msg);
+
+      next();
+    } catch (error) {
+      next(error);
+    }
+  },
+];

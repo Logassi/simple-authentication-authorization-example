@@ -7,14 +7,17 @@ import {
   VerifyUser,
 } from "../controllers/auth.controller";
 import { VerifyToken, AdminGuard } from "../middlewares/auth.middleware";
-import { RegisterValidation } from "../middlewares/validations/auth.validation";
+import {
+  LoginValidation,
+  RegisterValidation,
+} from "../middlewares/validations/auth.validation";
 import { SingleUploader } from "../utils/uploader";
 
 const router = Router();
 
 router.post("/register", RegisterValidation, Register);
 
-router.post("/login", Login);
+router.post("/login", LoginValidation, Login);
 
 router.get("/me", VerifyToken, GetUserLogin);
 
