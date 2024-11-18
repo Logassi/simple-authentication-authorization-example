@@ -7,22 +7,45 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-row justify-around items-center p-2 bg-gray-300">
+    <div className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
+      {/* Logo Section */}
       <div>
-        <button onClick={() => router.push("/")}>LOGO</button>
+        <button
+          onClick={() => router.push("/")}
+          className="text-xl font-semibold text-blue-500"
+        >
+          LOGO
+        </button>
       </div>
-      <div>
-        <div className="flex gap-4">
-          <button onClick={() => router.push("/dashboard")}>Dashboard</button>
-          <button onClick={() => router.push("/admin")}>Admin</button>
-        </div>
+
+      {/* Navigation Links */}
+      <div className="flex space-x-6">
+        <button
+          className="text-gray-700 hover:text-blue-500 transition-all"
+          onClick={() => router.push("/events")}
+        >
+          Events
+        </button>
+        <button
+          className="text-gray-700 hover:text-blue-500 transition-all"
+          onClick={() => router.push("/host")}
+        >
+          Host
+        </button>
+        <button
+          className="text-gray-700 hover:text-blue-500 transition-all"
+          onClick={() => router.push("/pricing")}
+        >
+          Pricing
+        </button>
       </div>
+
+      {/* User Authentication/Logout Section */}
       {user ? (
-        <div className="flex gap-4 items-center">
-          <p>Welcome, {user.name}</p>
+        <div className="flex items-center space-x-4">
+          <p className="text-gray-700">Welcome, {user.name}</p>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
-            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => {
               clearAuth();
               router.push("/");
@@ -32,20 +55,18 @@ export default function Navbar() {
           </button>
         </div>
       ) : (
-        <div className="flex gap-2">
+        <div className="flex space-x-4">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
-            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => router.push("/register")}
           >
-            Register
+            Sign Up
           </button>
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
-            type="submit"
+            className="bg-transparent border border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 font-bold py-2 px-4 rounded"
             onClick={() => router.push("/login")}
           >
-            Login
+            Log In
           </button>
         </div>
       )}

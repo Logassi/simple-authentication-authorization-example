@@ -1,7 +1,11 @@
-export default function HomeView() {
+import CategorySection from "./components/categorySection";
+import HeroSection from "./components/heroSection";
+
+export default function Home() {
   return (
-    <div className="mx-auto max-w-lg mt-20 flex justify-center">
-      <p>Home</p>
+    <div>
+      <HeroSection />
+      <CategorySection />
     </div>
   );
 }
